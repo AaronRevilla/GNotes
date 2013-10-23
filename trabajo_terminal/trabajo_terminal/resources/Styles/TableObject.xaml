@@ -1,0 +1,126 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:GraphicNotes.Views.Objects"
+                    xmlns:a="clr-namespace:GraphicNotes.Views.Adorners"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    >
+
+    <Style TargetType="{x:Type v:CellBorder}" x:Key="CellBorder_Vertical">
+        <Setter Property="Fill" Value="Black"/>
+        <Setter Property="IsHitTestVisible" Value="false"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Width" Value="{Binding Path=Size, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Size" Value="1"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Grid.RowSpan" Value="3"/>
+    </Style>
+
+    <Style TargetType="{x:Type v:CellBorder}" x:Key="CellBorder_Horizontal">
+        <Setter Property="Fill" Value="Black"/>
+        <Setter Property="IsHitTestVisible" Value="false"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Height" Value="{Binding Path=Size, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Size" Value="1"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="Grid.ColumnSpan" Value="3"/>
+    </Style>
+
+
+    <Style TargetType="{x:Type GridSplitter}" x:Key="GridSplitter_Column">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="ResizeBehavior" Value="PreviousAndNext"/>
+        <Setter Property="Width" Value="1"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Grid.RowSpan" Value="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource FindAncestor, 
+                         AncestorType={x:Type Grid}}}"/>
+    </Style>
+
+    <Style TargetType="{x:Type GridSplitter}" x:Key="GridSplitter_Row">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="ResizeBehavior" Value="PreviousAndNext"/>
+        <Setter Property="Height" Value="1"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Grid.ColumnSpan" Value="{Binding Path=ColumnDefinitions.Count, RelativeSource={RelativeSource FindAncestor, 
+                         AncestorType={x:Type Grid}}}"/>
+    </Style>
+
+    <Style TargetType="{x:Type v:TableCell}" x:Key="TableObject_CellStyle">
+        
+        <Setter Property="BorderTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+
+                    <Border BorderThickness="0" BorderBrush="Transparent" SnapsToDevicePixels="true"
+                            CornerRadius="0">
+                            <ContentPresenter />
+                        </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="BorderTemplate">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ContentControl}">
+                            <Border BorderThickness="0" BorderBrush="Transparent" Background="LightBlue"
+                            CornerRadius="0">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="IsSelected" Value="True"/>
+                <Setter Property="Cursor" Value="IBeam"   /> 
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style TargetType="{x:Type v:TableObject}" BasedOn="{StaticResource BaseObjectStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type v:TableObject}">
+                    <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=.}">
+                        <a:MoveThumb x:Name="PART_MoveThumb"
+                                     Cursor="SizeAll"
+                                     Template="{StaticResource MoveThumbTemplate}" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <v:ObjectBar Opacity="0"  x:Name="PART_ObjectBar" Grid.Row="0" Style="{StaticResource ObjectBarStyle}"></v:ObjectBar>
+
+                            <Grid Grid.Row="1">
+                                <Grid x:Name="PART_Grid" IsHitTestVisible="True"></Grid>
+                            </Grid>
+                        </Grid>
+                        <a:ResizeDecorator x:Name="PART_BaseObjectDecorator" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter TargetName="PART_BaseObjectDecorator"
+                                    Property="ShowDecorator"
+                                    Value="True" />
+                            <Setter TargetName="PART_ObjectBar"
+                                    Property="Opacity"
+                                    Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

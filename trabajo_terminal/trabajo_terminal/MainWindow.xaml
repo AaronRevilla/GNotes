@@ -1,0 +1,375 @@
+﻿<Window xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"  
+        xmlns:dxr="clr-namespace:DevExpress.Xpf.Ribbon;assembly=DevExpress.Xpf.Ribbon.v12.2"  
+        xmlns:dxdo="clr-namespace:DevExpress.Xpf.Docking;assembly=DevExpress.Xpf.Docking.v12.2"  
+        xmlns:dxb="clr-namespace:DevExpress.Xpf.Bars;assembly=DevExpress.Xpf.Core.v12.2"  
+        xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v12.2"  
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        x:Class="GraphicNotes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:w="clr-namespace:GraphicNotes.Views.Workspace"
+        xmlns:v="clr-namespace:GraphicNotes.Views.Objects"
+        xmlns:g="clr-namespace:GraphicNotes"
+
+        Title="MainWindow" Height="600" Width="800" MinHeight="600" MinWidth="800" Loaded="Window_Loaded" x:Name="Window" 
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Collections/RibbonBar/RibbonBarIcons.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/General.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+
+        <dxb:BarManager Name="barManager" Grid.Row="1">
+            <dxb:BarManager.Items>
+                <dxb:BarButtonItem Name="bNewDocument" Content="New Document" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bNewDocument}"
+                               Description="New blank document."
+                               Hint="New blank document." ItemClick="bNewDocument_ItemClick"/>
+                
+                <dxb:BarButtonItem Name="bNewTemplate" Content="New Template" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bNewTemplate}"
+                               Description="New blank template."
+                               Hint="New blank template."/>
+
+                <dxb:BarButtonItem Name="bOpen" Content="Open" 
+                               Glyph="/GraphicNotes;component/Images/BarIcons/open_16x16.png"
+                               LargeGlyph="/GraphicNotes;component/Images/BarIcons/open_32x32.png"
+                               Description="Open a file."
+                               Hint="Open a file."/>
+
+                <dxb:BarButtonItem Name="bConnect" Content="Connect" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bConnectIcon}"
+                               Description="Connect to a file."
+                               Hint="Connect to a file." ItemClick="bConnect_ItemClick"/>
+                <dxb:BarButtonItem Name="bDisconnect" Content="Leave" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bDisconnectIcon}"
+                               Description="Disconnect from the current shared document."
+                               Hint="Disconnect from the current shared document."/>
+                <dxb:BarButtonItem Name="bClose" Content="Close" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bCloseIcon}"
+                               Description="Close the actived document."
+                               Hint="Close the actived document."/>
+                <dxb:BarButtonItem Name="bShare" Content="Share" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bShareIcon}"
+                               Description="Share a document."
+                               Hint="Share a document." ItemClick="bShare_ItemClick"/>
+                <dxb:BarButtonItem Name="bStop" Content="Stop" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bStopIcon}"
+                               Description="Stop sharing the active document."
+                               Hint="Stop sharing the active document." ItemClick="bStop_ItemClick"/>
+
+                <dxb:BarButtonItem Name="bManageDocumentServers" Content="Management" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bRepositoryManagement}"
+                               Description="Manage repository."
+                               Hint="Manage repository."/>
+                <dxb:BarButtonItem Name="bNewGroup" Content="New Group" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bNewGroup}"
+                               Description="Add new group."
+                               Hint="Add new group."/>
+                <dxb:BarButtonItem Name="bNewTeam" Content="New Team" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bNewTeam}"
+                               Description="Add new team."
+                               Hint="Add new Team."/>
+                <dxb:BarButtonItem Name="bNewTask" Content="New Task" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bNewTask}"
+                               Description="Add new task."
+                               Hint="Add new task."/>
+                <dxb:BarButtonItem Name="bTasks" Content="Tasks" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bTasks}"
+                               Description="View tasks."
+                               Hint="View tasks."/>
+
+                <dxb:BarStaticItem Name="bDocumentServerState" ItemMinWidth="50"/>
+                <dxb:BarStaticItem Name="bDocumentClientState" ItemMinWidth="50"/>
+                <dxb:BarStaticItem Name="bConnectingState" ItemMinWidth="50"/>
+
+                <dxb:BarButtonItem Name="bBold" Content="Bold" Style="{DynamicResource BarButtonItem_Style}"
+                               Tag="{DynamicResource bTasks}"
+                               Description="View tasks."
+                               Hint="View tasks." Command="{x:Static EditingCommands.ToggleBold}"/>
+
+                <!--<dxb:BarCheckItem Name="bBold" Content="Bold" Glyph="/RibbonDemo;component/Images/Icons/bold-16x16.png" KeyGesture="Ctrl+B" IsChecked="{Binding ViewModel.IsBold, Mode=TwoWay}" />
+                <dxb:BarCheckItem Name="bItalic" Content="Italic" Glyph="/RibbonDemo;component/Images/Icons/italic-16x16.png" KeyGesture="Ctrl+I" IsChecked="{Binding ViewModel.IsItalic, Mode=TwoWay}" />
+                <dxb:BarCheckItem Name="bUnderline" Content="Underline" Glyph="/RibbonDemo;component/Images/Icons/underline-16x16.png" KeyGesture="Ctrl+U" IsChecked="{Binding ViewModel.IsUnderline, Mode=TwoWay}" />
+                <dxr:BarButtonGroup Name="bgFontShape">
+                    <dxr:BarButtonGroup.ItemLinks>
+                        <dxb:BarItemLink BarItemName="bBold"/>
+                        <dxb:BarItemLink BarItemName="bItalic"/>
+                        <dxb:BarItemLink BarItemName="bUnderline"/>
+                    </dxr:BarButtonGroup.ItemLinks>
+                </dxr:BarButtonGroup>-->
+
+                <!--region #RibbonGalleryBarItem-->
+                <dxr:RibbonGalleryBarItem Name="gTheme" DropDownGalleryInit="OnThemeDropDownGalleryInit">
+                    <dxr:RibbonGalleryBarItem.Gallery>
+                        <dxb:Gallery MinColCount="2" ColCount="4" RowCount="2" ItemCheckMode="Single" AllowHoverAnimation="True" AllowHoverImages="True" 
+                                     FilterCaption="Themes" IsItemCaptionVisible="True" ItemCaptionHorizontalAlignment="Center" ItemGlyphLocation="Top"
+                                     HoverGlyphSize="96,96" ItemClick="OnThemeItemClick">
+                            <dxb:Gallery.Groups>
+                                <dxb:GalleryItemGroup Caption="Standard">
+                                    <dxb:GalleryItem Caption="DXStyle" Glyph="/GraphicNotes;component/Images/ThemeIcons/DXStyle.png"/>
+                                    <dxb:GalleryItem Caption="VS2010" Glyph="/GraphicNotes;component/Images/ThemeIcons/VS2010.png"/>
+                                    <dxb:GalleryItem Caption="MetropolisDark" Glyph="/GraphicNotes;component/Images/ThemeIcons/MetropolisDark.png"/>
+                                    <dxb:GalleryItem Caption="MetropolisLight" Glyph="/GraphicNotes;component/Images/ThemeIcons/MetropolisLight.png"/>
+                                    <dxb:GalleryItem Caption="Seven" Glyph="/GraphicNotes;component/Images/ThemeIcons/Seven_48x48.png"/>
+                                    <dxb:GalleryItem Caption="Light Gray" Glyph="/GraphicNotes;component/Images/ThemeIcons/LightGray_48x48.png" />
+                                    <dxb:GalleryItem Caption="Deep Blue" Glyph="/GraphicNotes;component/Images/ThemeIcons/DeepBlue_48x48.png"/>
+                                </dxb:GalleryItemGroup>
+                                <dxb:GalleryItemGroup Caption="Office2007">
+                                    <dxb:GalleryItem Caption="Office 2007 Black" Glyph="/GraphicNotes;component/Images/ThemeIcons/Office2007Black_48x48.png"/>
+                                    <dxb:GalleryItem Caption="Office 2007 Blue" Glyph="/GraphicNotes;component/Images/ThemeIcons/Office2007Blue_48x48.png"/>
+                                    <dxb:GalleryItem Caption="Office 2007 Silver" Glyph="/GraphicNotes;component/Images/ThemeIcons/Office2007Silver_48x48.png"/>
+                                </dxb:GalleryItemGroup>
+                                <dxb:GalleryItemGroup Caption="Office2010">
+                                    <dxb:GalleryItem Caption="Office 2010 Black" Glyph="/GraphicNotes;component/Images/ThemeIcons/Office2010Black_48x48.png"/>
+                                    <dxb:GalleryItem Caption="Office 2010 Blue" Glyph="/GraphicNotes;component/Images/ThemeIcons/Office2010Blue_48x48.png"/>
+                                    <dxb:GalleryItem Caption="Office 2010 Silver" Glyph="/GraphicNotes;component/Images/ThemeIcons/Office2010Silver_48x48.png"/>
+                                </dxb:GalleryItemGroup>
+                                <dxb:GalleryItemGroup Caption="Office2013">
+                                    <dxb:GalleryItem Caption="Office 2013" Glyph="/GraphicNotes;component/Images/ThemeIcons/Office2013_48x48.png"/>
+                                </dxb:GalleryItemGroup>
+                            </dxb:Gallery.Groups>
+                        </dxb:Gallery>
+                    </dxr:RibbonGalleryBarItem.Gallery>
+                </dxr:RibbonGalleryBarItem>
+                <!--endregion #RibbonGalleryBarItem-->
+            </dxb:BarManager.Items>
+            <DockPanel>
+                <dxr:RibbonControl x:Name="ribbonControl"  DockPanel.Dock="Top"  >
+                    <dxr:RibbonDefaultPageCategory>
+                        <dxr:RibbonPage x:Name="homePage" Caption="Home">
+                            <dxr:RibbonPageGroup Name="pFile" Caption="File" 
+                                             CaptionButtonClick="groupFile_CaptionButtonClick">
+
+
+                                <dxb:BarItemLink BarItemName="bNewDocument" RibbonStyle="Large"/>
+                                <dxb:BarItemLink BarItemName="bOpen" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bConnect" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bShare" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bClose" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bDisconnect" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bStop" RibbonStyle="SmallWithText"/>
+                                <!--<dxb:BarItemLink BarItemName="bOpen" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bClose" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bPrint" RibbonStyle="SmallWithText"/>-->
+
+                                <dxb:BarItemLinkSeparator/>
+                                <!--<dxb:BarItemLink BarItemName="sbSave" RibbonStyle="Large"/>-->
+                            </dxr:RibbonPageGroup>
+                            <dxr:RibbonPageGroup Name="pServer" Caption="Repository">
+
+                                <dxb:BarItemLink BarItemName="bManageDocumentServers" RibbonStyle="Large"/>
+
+                                <dxb:BarItemLink BarItemName="bNewGroup" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bNewTeam" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bNewTask" RibbonStyle="SmallWithText"/>
+                                <dxb:BarItemLink BarItemName="bTasks" RibbonStyle="Large"/>
+                                <dxb:BarItemLink BarItemName="bBold" RibbonStyle="Large"/>
+                            </dxr:RibbonPageGroup>
+                            <dxr:RibbonPageGroup Name="pTheme" Caption="Theme">
+                                <dxb:BarItemLink BarItemName="gTheme"/>
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+                        <dxr:RibbonPage x:Name="settingsPage" Caption="Settings">
+                            <dxr:RibbonPageGroup Caption="Theme" ShowCaptionButton="False">
+                                <dxb:BarItemLink BarItemName="gTheme"/>
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage >
+                    </dxr:RibbonDefaultPageCategory>
+                </dxr:RibbonControl>
+
+                <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">
+                    <dxr:RibbonStatusBarControl.LeftItemLinks>
+                        <dxb:BarItemLink BarItemName="bDocumentServerState" RibbonStyle="Large"/>
+                        <dxb:BarItemLink BarItemName="bDocumentClientState" RibbonStyle="Large"/>
+                        
+                    </dxr:RibbonStatusBarControl.LeftItemLinks>
+                    <dxr:RibbonStatusBarControl.RightItemLinks>
+                        <dxb:BarItemLink BarItemName="bConnectingState" RibbonStyle="Large"/>
+                    </dxr:RibbonStatusBarControl.RightItemLinks>
+                </dxr:RibbonStatusBarControl>
+
+                <dxdo:DockLayoutManager Grid.Row="1" Margin="0" Name="dockManager1">
+                    <dxdo:LayoutGroup x:Name="RootGroup" Orientation="Horizontal">
+
+                        <dxdo:LayoutGroup x:Name="ToolsLayout" Orientation="Vertical" ItemWidth="212">
+                            <dxdo:LayoutPanel x:Name="paneToolbox" Caption="Toolbox">
+                                <Border >
+                                    <ContentControl Content="{StaticResource ToolboxCollection}" />
+                                </Border>
+                            </dxdo:LayoutPanel>
+
+                        </dxdo:LayoutGroup>
+                        <dxdo:LayoutGroup x:Name="DocumentsLayout" Orientation="Vertical" ItemWidth="0.75*">
+                            <dxdo:DocumentGroup x:Name="documentGroup1"  >
+                                <!-- Documentos-->
+                               
+                            </dxdo:DocumentGroup>
+                        </dxdo:LayoutGroup>
+                        <dxdo:LayoutGroup x:Name="NetworkLayout" Orientation="Vertical" ItemWidth="0.25*">
+                            <dxdo:TabbedGroup>
+                                <dxdo:LayoutPanel x:Name="chatPanel" Caption="Chat">
+
+                                </dxdo:LayoutPanel>
+
+                                <dxdo:LayoutPanel x:Name="groupPanel" Caption="Group">
+                                </dxdo:LayoutPanel>
+                            </dxdo:TabbedGroup>
+                        </dxdo:LayoutGroup>
+                    </dxdo:LayoutGroup>
+
+
+                    <dxdo:DockLayoutManager.FloatGroups>
+                        <dxdo:FloatGroup FloatSize="580,300" FloatLocation="100,218">
+                            <dxdo:LayoutPanel Caption="Repository Management" x:Name="serverManagementPanel" VerticalScrollBarVisibility="Disabled" >
+                                
+                                    <g:ModalContentPresenter x:Name="synchronizingPopup">
+                                        <dxdo:LayoutGroup Orientation="Vertical" x:Name="synchronizingPopupContent">
+                                            <dxdo:LayoutGroup Orientation="Horizontal" ItemHeight="Auto">
+                                                <dxdo:LayoutGroup Caption="Remote Server" GroupBorderStyle="Group" ShowCaption="True" ItemWidth="Auto">
+                                                    <dxdo:LayoutControlItem>
+
+                                                        <StackPanel>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Label Grid.Column="0" Content="IP Address:" Margin="10,0,0,0"  />
+                                                                <dxe:TextEdit x:Name="ipRepositoryField" Grid.Column="1" Width="100" Margin="5,0,0,5"/>
+                                                            </Grid>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Button Grid.Column="0" x:Name="connectRepositoryServerButton" Content="Connect"  Margin="0" Click="ConnectRepositoryServerButton_Click"/>
+                                                            </Grid>
+                                                        </StackPanel>
+
+                                                    </dxdo:LayoutControlItem>
+                                                </dxdo:LayoutGroup>
+                                                <dxdo:LayoutGroup  Caption="Local Repository" GroupBorderStyle="Group" ShowCaption="True" ItemWidth="*">
+
+                                                    <dxdo:LayoutControlItem>
+                                                        <StackPanel>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Label Grid.Column="0" Content="Repository Name:" Margin="10,0,0,0"  />
+                                                                <dxe:TextEdit x:Name="repositoryNameField" Grid.Column="1" Margin="5,0,0,5"/>
+                                                                <Label Grid.Column="2" Content="Password:" Margin="10,0,0,0"  />
+                                                                <dxe:TextEdit x:Name="repositoryPasswordField" Grid.Column="3" Margin="5,0,0,5"/>
+                                                            </Grid>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Button Grid.Column="0" x:Name="loadLocalRepositoryButton" Content="Load" Margin="0" Click="loadLocalRepositoryButton_Click" />
+                                                                <Button Grid.Column="1" x:Name="synchronizeButton" Content="Syncrhonize" Margin="10,0,0,0" Click="synchronizeButton_Click" />
+                                                                <Button Grid.Column="2" x:Name="startServerButton" Content="Start Local Server" Margin="10,0,0,0"/>
+                                                            </Grid>
+                                                        </StackPanel>
+                                                    </dxdo:LayoutControlItem>
+                                                </dxdo:LayoutGroup>
+
+                                            </dxdo:LayoutGroup>
+                                            <dxdo:LayoutGroup  ItemHeight="*">
+                                                <dxdo:LayoutGroup>
+                                                    <dxdo:LayoutControlItem>
+                                                        <TabControl TabStripPlacement="Bottom">
+                                                            <TabItem Header="Groups">
+                                                                <TreeView x:Name="groupTreeField" ItemsSource="{Binding Groups}" SelectedItemChanged="groupTreeField_SelectedItemChanged" >
+                                                                    <!--<TreeView.ItemTemplate>
+                                                                <HierarchicalDataTemplate  DataType="{x:Type s:Group}" ItemsSource="{Binding Teams}" >
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                    <Image Source="{DynamicResource bNewGroup}" Width="25" Height="25" />
+                                                                        <Label Content="{Binding Name}" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0" />
+                                                                        <Button  Margin="50,0,0,0" VerticalAlignment="Center" Style="{StaticResource ListButton_Style}">
+                                                                            <Image Source="{DynamicResource bEditGroup}" 
+                                                                                        Width="16" 
+                                                                                        Height="16"/>
+                                                                        </Button>
+                                                                        <Button  Margin="10,0,0,0" VerticalAlignment="Center" Style="{StaticResource ListButton_Style}" Click="bDeleteGroup_Click">
+                                                                                        <Image Source="{DynamicResource bDeleteGroup}" 
+                                                                                        Width="16" 
+                                                                                        Height="16"/>
+                                                                        </Button>
+                                                                        
+                                                                    </StackPanel>
+                                                                    <HierarchicalDataTemplate.ItemTemplate>
+                                                                        <HierarchicalDataTemplate>
+                                                                            <StackPanel Orientation="Horizontal" >
+                                                                                <Image Source="{DynamicResource bNewTeam}" Width="16" Height="16" Margin="10,0,0,0"/>
+                                                                                <Label Content="{Binding Name}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0" />
+                                                                                <Button Margin="30,0,0,0" VerticalAlignment="Center" Style="{StaticResource ListButton_Style}" Click="bDeleteTeam_Click" >
+                                                                                                <Image Source="{DynamicResource bEditGroup}" 
+                                                                                        Width="10" 
+                                                                                        Height="10"/>
+                                                                                </Button>
+                                                                                <Button Margin="10,0,0,0" VerticalAlignment="Center" Style="{StaticResource ListButton_Style}" >
+                                                                                    <Image Source="{DynamicResource bDeleteTeam}" 
+                                                                                        Width="10" 
+                                                                                        Height="10"/>
+                                                                                </Button>
+                                                                            </StackPanel>
+                                                                        </HierarchicalDataTemplate>
+                                                                    </HierarchicalDataTemplate.ItemTemplate>
+                                                                </HierarchicalDataTemplate>
+                                                            </TreeView.ItemTemplate>-->
+                                                                </TreeView>
+
+                                                            </TabItem>
+                                                            <TabItem Header="Tasks">
+
+                                                            </TabItem>
+                                                        </TabControl>
+                                                    </dxdo:LayoutControlItem>
+                                                </dxdo:LayoutGroup>
+                                            </dxdo:LayoutGroup>
+                                        </dxdo:LayoutGroup>
+                                        <g:ModalContentPresenter.ModalContent>
+                                            <Grid x:Name="synPopupContent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Border Grid.Row="0">
+                                                    <Label Content="Synchronizing..." FontSize="20" FontWeight="Bold" Margin="10"/>
+                                                </Border>
+                                                <dxe:ProgressBarEdit Grid.Row="1" Margin="10,0" x:Name="synProgressBar"
+							                                                         HorizontalAlignment="Center" VerticalAlignment="Center"
+							                                                         Width="300" Height="30">
+                                                    <dxe:ProgressBarEdit.StyleSettings>
+                                                        <dxe:ProgressBarMarqueeStyleSettings/>
+                                                    </dxe:ProgressBarEdit.StyleSettings>
+                                                </dxe:ProgressBarEdit>
+                                                <Label Grid.Row="2" Content="{Binding Synchronizer.State}" FontWeight="Bold" FontSize="16" Margin="10,5" />
+                                                <Label Grid.Row="2" Content="{Binding Synchronizer.Error}" Foreground="#990000" FontWeight="Bold" FontSize="16" Margin="10,5" />
+                                            <Button Grid.Row="3" x:Name="closeSynPopupButton" Width="300" TextBlock.FontSize="14" Content="Close" Click="closeSynPopupButton_Click" Margin="10,5" />
+                                        </Grid>
+                                        </g:ModalContentPresenter.ModalContent>
+                                    </g:ModalContentPresenter>
+                            </dxdo:LayoutPanel>
+                        </dxdo:FloatGroup>
+                    </dxdo:DockLayoutManager.FloatGroups>
+                </dxdo:DockLayoutManager>
+            </DockPanel>
+
+        </dxb:BarManager>
+
+    </Grid>
+</Window>

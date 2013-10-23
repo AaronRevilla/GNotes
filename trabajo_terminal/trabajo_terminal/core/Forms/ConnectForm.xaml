@@ -1,0 +1,52 @@
+﻿<dx:DXWindow xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+    x:Class="GraphicNotes.Core.Forms.ConnectForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    Title="Insert Table"  Height="Auto" Width="300" ShowInTaskbar="False" Topmost="True" WindowStyle="ToolWindow" 
+    WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Height" 
+    >
+    <Grid>
+        <DockPanel>
+            <Border DockPanel.Dock="Bottom">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="acceptButton" Grid.Column="0" Content="Accept" FontSize="20" FontWeight="Bold" Margin="5,5,5,5"
+                             Width="100" HorizontalAlignment="Right" Click="AcceptButton_Click"/>
+                    <Button x:Name="cancelButton" Grid.Column="1" Content="Cancel" FontSize="20" FontWeight="Bold" Margin="5,5,5,5"
+                             Width="100" HorizontalAlignment="Left" Click="cancelButton_Click"/>
+                </Grid>
+            </Border>
+           
+            <Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="IP:" FontWeight="Bold" Padding="0" Margin="10,10,0,10" HorizontalContentAlignment="Right"/>
+                    <dxe:TextEdit x:Name="ipField" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="10"  />
+
+                    <Label Grid.Row="1" Grid.Column="0"  Content="DataPort:" FontWeight="Bold" Padding="0" Margin="10,10,0,10" HorizontalContentAlignment="Right" />
+                    <dxe:SpinEdit x:Name="dataPortField" Grid.Row="1" Grid.Column="1"  Margin="10" MinValue="1025" MaxValue="65536" Value="9092" IsFloatValue="False" />
+
+                    <Label Grid.Row="1" Grid.Column="2"  Content="FilePort" FontWeight="Bold" Padding="0" Margin="10,10,0,10" HorizontalContentAlignment="Right"/>
+                    <dxe:SpinEdit x:Name="filePortField" Grid.Column="3" Grid.Row="1" Margin="10" MinValue="1025" MaxValue="65536" Value="9093" IsFloatValue="False"  />
+
+                    <Label Grid.Row="3" Grid.Column="0" Content="Password:" FontWeight="Bold" Padding="0" Margin="10,10,0,10" HorizontalContentAlignment="Right"/>
+                    <dxe:PasswordBoxEdit x:Name="passwordField" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="10"  />
+                </Grid>
+            </Border>
+        </DockPanel>
+    </Grid>
+</dx:DXWindow>

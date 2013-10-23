@@ -1,0 +1,31 @@
+﻿<Application x:Class="GraphicNotes.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/BaseObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/DocServer.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/LineObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/FigureObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/PictureObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/PlotObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/PolygonObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/TableObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/TextObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/VideoObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/Toolbox.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/Graphic2DObject.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/DocumentPanel.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/CanvasWorkspaceContainer.xaml"/>
+                <ResourceDictionary Source="Resources/Collections/ToolboxCollection.xaml"/>
+                <ResourceDictionary Source="Languages/StringResources.xaml"/>
+
+        
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

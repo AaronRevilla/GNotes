@@ -1,0 +1,166 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxb="clr-namespace:DevExpress.Xpf.Bars;assembly=DevExpress.Xpf.Core.v12.2"
+                    xmlns:local="clr-namespace:GraphicNotes">
+
+    <local:ApplicationThemeProvider x:Key="ApplicationThemeProvider"/>
+
+
+
+    <Style TargetType="dxb:BarButtonItem" x:Key="BarButtonItem_Style">
+        <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"/>
+        <Setter Property="GlyphTemplate" >
+            <Setter.Value>
+                <DataTemplate >
+                    <Image Source="{Binding Path=Link.Item.Tag, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=dxb:BarItemLinkControl}}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <DrawingImage x:Key="bNewRotation2D">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="M 49.2013,167.879L 123.057,167.879C 116.12,144.463 105.435,123.725 88.7107,105.68C 75.4933,126.487 62.5853,146.808 49.2013,167.879 Z M 0,194.989C 23.3907,158.329 45.864,123.108 68.4627,87.688C 65.808,85.7653 63.5186,84.1066 60.7266,82.0826C 64.208,77.0359 67.54,72.2053 71.0147,67.1679C 73.6106,68.828 75.8147,70.236 78.476,71.9359C 83.3493,64.3466 88.2533,56.748 93.1187,49.1253C 102.541,34.3613 112.039,19.644 121.28,4.7666C 123.365,1.40927 125.523,-0.189362 129.672,-3.05176e-005C 137.869,0.371948 146.097,0.109314 154.365,0.109314C 155.236,3.11328 152.913,4.74261 151.716,6.6373C 135.264,32.6946 118.713,58.6893 102.151,84.6773C 100.469,87.3159 98.6173,89.3373 101.745,92.6573C 121.787,113.941 134.389,139.313 142.151,168.059L 186.561,168.059L 186.561,194.525L 146.661,194.525L 146.661,208.465L 129.496,208.465C 127.641,204.348 128.893,199.791 127.812,194.989L 0,194.989 Z "/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bNewTranslation2D">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="M49.276619,31.48002L54.040401,31.48002 49.229622,36.290395 63.998939,36.290395 63.998939,39.890674 49.229622,39.890674 54.040401,44.701051 49.276619,44.701051 42.665924,38.090535z M13.222291,11.649993L22.750526,11.649993 13.128295,21.280262 42.667003,21.280262 42.667003,28.470735 13.128295,28.470735 22.750526,38.090993 13.222291,38.090993 0,24.870494z M39.183635,0L43.947418,0 39.136638,4.8167281 53.905956,4.8167281 53.905956,8.4042921 39.136638,8.4042921 43.947418,13.22102 39.183635,13.22102 32.57294,6.6055136z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    
+    <DrawingImage x:Key="bNewScale2D">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="M0.37800026,0L6.4872589,0.7422123 12.594001,1.4856491 8.9273398,5.1524324 15.384327,11.609 49.246953,11.609 55.452264,5.4047213 51.785001,1.7385511 57.891728,0.99516392 64.000001,0.25300026 63.256391,6.3582697 62.514184,12.466 58.847238,8.7991459 51.165002,16.484 51.165002,32.477397 58.46885,39.780974 62.135755,36.115001 62.879228,42.222806 63.62,48.328002 57.513524,47.585837 51.406999,46.842475 55.072877,43.176541 48.868993,36.972001 15.005969,36.972001 8.5480661,43.429832 12.215,47.095057 6.1069098,47.838778 0,48.581 0.74348164,42.47383 1.4858046,36.367 5.1524401,40.034566 12.835,32.349109 12.835,15.849903 5.5316153,8.5479271 1.8649282,12.214 1.1214018,6.1068897z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    
+    <DrawingImage x:Key="bNewMatrix2D">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="M0,9.0583566E-06L13.564999,9.0583566E-06 13.564999,5.0910095 6.1503563,5.0910095 6.1503563,58.909008 13.564999,58.909008 13.564999,64.000008 0,64.000008z M53.978999,0L67.544,0 67.544,64 53.978999,64 53.978999,58.908997 61.39365,58.908997 61.39365,5.0910033 53.978999,5.0910033z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bApply">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="F1M1188.2,1715.23L1169.93,1728.57 1151.66,1741.9 1151.66,1715.23 1151.66,1688.57 1169.93,1701.9 1188.2,1715.23z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bBringUp">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="F1M753.644,-13.0589L753.736,-12.9639 753.557,-12.7816 732.137,8.63641 732.137,29.7119 756.445,5.40851 764.094,-2.24384 764.275,-2.42352 771.834,5.1286 796.137,29.4372 796.137,8.36163 774.722,-13.0589 764.181,-23.5967 753.644,-13.0589z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bBringDown">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="F1M181.297,177.841L181.205,177.746 181.385,177.563 202.804,156.146 202.804,135.07 178.497,159.373 170.847,167.026 170.666,167.205 163.107,159.653 138.804,135.345 138.804,156.42 160.219,177.841 170.76,188.379 181.297,177.841z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bDelete">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="M33.978,27.679999L33.978,58.098995 41.374,58.098995 41.374,27.679999z M14.841001,27.679999L14.841001,58.098995 22.237,58.098995 22.237,27.679999z M4.0320003,22.430001L52.183002,22.430001 52.183002,63.995998 4.0320003,63.995998z M15.974001,0L40.194999,0 40.194999,7.7200003 56.166999,7.7200003 56.166999,15.995 0,15.995 0,7.7200003 15.974001,7.7200003z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bBold">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="F1M-240.817,-5140.75L-215.236,-5140.75C-210.17,-5140.75 -206.394,-5140.54 -203.906,-5140.12 -201.417,-5139.7 -199.189,-5138.82 -197.225,-5137.48 -195.261,-5136.14 -193.624,-5134.36 -192.314,-5132.13 -191.003,-5129.9 -190.351,-5127.41 -190.351,-5124.64 -190.351,-5121.65 -191.158,-5118.9 -192.771,-5116.39 -194.389,-5113.89 -196.579,-5112.01 -199.342,-5110.76 -195.443,-5109.62 -192.446,-5107.69 -190.351,-5104.95 -188.253,-5102.22 -187.208,-5099 -187.208,-5095.3 -187.208,-5092.39 -187.883,-5089.56 -189.236,-5086.81 -190.589,-5084.06 -192.439,-5081.86 -194.781,-5080.22 -197.124,-5078.58 -200.014,-5077.56 -203.446,-5077.19 -205.6,-5076.95 -210.796,-5076.81 -219.032,-5076.75L-240.817,-5076.75 -240.817,-5140.75z M-227.897,-5130.1L-227.897,-5115.3 -219.426,-5115.3C-214.391,-5115.3 -211.264,-5115.37 -210.041,-5115.52 -207.829,-5115.78 -206.088,-5116.54 -204.822,-5117.81 -203.557,-5119.07 -202.923,-5120.74 -202.923,-5122.81 -202.923,-5124.79 -203.469,-5126.39 -204.561,-5127.63 -205.652,-5128.87 -207.275,-5129.62 -209.426,-5129.88 -210.708,-5130.03 -214.391,-5130.1 -220.473,-5130.1L-227.897,-5130.1z M-227.897,-5104.65L-227.897,-5087.53 -215.933,-5087.53C-211.277,-5087.53 -208.324,-5087.67 -207.071,-5087.93 -205.15,-5088.28 -203.587,-5089.13 -202.377,-5090.48 -201.17,-5091.83 -200.564,-5093.65 -200.564,-5095.92 -200.564,-5097.84 -201.032,-5099.47 -201.964,-5100.81 -202.895,-5102.14 -204.24,-5103.12 -205.999,-5103.73 -207.761,-5104.34 -211.583,-5104.65 -217.46,-5104.65L-227.897,-5104.65z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bItalic">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="F1M-208.49,-4719.89L-209.008,-4718.14 -235.346,-4718.14 -234.683,-4719.89C-232.041,-4719.95 -230.295,-4720.17 -229.447,-4720.55 -228.062,-4721.08 -227.04,-4721.82 -226.376,-4722.77 -225.339,-4724.25 -224.27,-4726.89 -223.17,-4730.7L-212.029,-4769.31C-211.085,-4772.52 -210.614,-4774.94 -210.614,-4776.58 -210.614,-4777.39 -210.817,-4778.08 -211.226,-4778.65 -211.639,-4779.22 -212.256,-4779.65 -213.091,-4779.95 -213.926,-4780.25 -215.554,-4780.4 -217.977,-4780.4L-217.409,-4782.14 -192.679,-4782.14 -193.197,-4780.4C-195.213,-4780.43 -196.706,-4780.21 -197.682,-4779.74 -199.097,-4779.11 -200.174,-4778.21 -200.916,-4777.04 -201.654,-4775.88 -202.606,-4773.3 -203.77,-4769.31L-214.863,-4730.7C-215.868,-4727.14 -216.373,-4724.88 -216.373,-4723.9 -216.373,-4723.11 -216.175,-4722.45 -215.782,-4721.89 -215.389,-4721.34 -214.761,-4720.92 -213.891,-4720.62 -213.031,-4720.32 -211.226,-4720.08 -208.49,-4719.89z" />
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bVideo">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="M48.00922,49.362999C51.186989,49.362999,53.762001,51.117016,53.762001,53.274704L53.762001,57.866001 42.256001,57.866001 42.256001,53.274704C42.256001,51.117016,44.833462,49.362999,48.00922,49.362999z M32.508339,49.362999C35.684731,49.362999,38.261002,51.112968,38.261002,53.274384L38.261002,57.864002 26.757,57.864002 26.757,53.274384C26.757,51.112968,29.331949,49.362999,32.508339,49.362999z M15.99059,49.362999C19.170095,49.362999,21.744999,51.112968,21.744999,53.274384L21.744999,57.864002 10.238,57.864002 10.238,53.274384C10.238,51.112968,12.816765,49.362999,15.99059,49.362999z M48.154602,40.026001C50.45908,40.026001 52.323002,41.891827 52.323002,44.19516 52.323002,46.498615 50.45908,48.367001 48.154602,48.367001 45.853271,48.367001 43.985001,46.498615 43.985001,44.19516 43.985001,41.891827 45.853271,40.026001 48.154602,40.026001z M32.654629,40.026001C34.957329,40.026001 36.821999,41.891876 36.821999,44.19405 36.821999,46.498783 34.957329,48.366001 32.654629,48.366001 30.351231,48.366001 28.483999,46.498783 28.483999,44.19405 28.483999,41.891876 30.351231,40.026001 32.654629,40.026001z M16.1376,40.026001C18.44146,40.026001 20.306,41.891876 20.306,44.19405 20.306,46.498783 18.44146,48.366001 16.1376,48.366001 13.836289,48.366001 11.968,46.498783 11.968,44.19405 11.968,41.891876 13.836289,40.026001 16.1376,40.026001z M26.070999,7.4309998L26.070999,16.890345 26.070999,26.351 32.00005,21.619423 37.927002,16.890345 32.00005,12.161267z M0,0L64,0 64,33.348999 0,33.348999z" />
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="bOpenFile">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{Binding ApplicationThemeName, Source={StaticResource ApplicationThemeProvider}, Converter={local:BarItemsColorConverter}}"
+                                     Geometry="M0,30.723885L43.251266,30.723885 43.25436,30.748375C43.471684,32.062429,44.410835,33.472496,45.528549,34.071115L61.616096,42.678585C62.254787,43.020718,63.099243,43.197384,63.945641,43.206615L64,43.205864 64,59.990997 0,59.990997z M79.785347,12.715278C80.47261,12.729635,80.941002,13.297566,80.941002,14.27948L80.941002,28.421455C80.941002,29.848389,79.901825,31.544115,78.629547,32.19035L66.300591,38.440802C65.024895,39.08572,62.956806,39.0632,61.698231,38.389309L49.314484,31.762072C48.055775,31.089365,47.027,29.371252,47.027,27.944845L47.027,14.27948C47.027,13.297566 47.495457,12.729635 48.182709,12.715279 48.495098,12.708752 48.852692,12.816601 49.232044,13.051934L61.780537,20.828224C62.991177,21.579422,64.976822,21.579422,66.190758,20.828224L78.735954,13.051934C79.115349,12.816601,79.472961,12.708752,79.785347,12.715278z M0,7.3139982L25.779999,7.3139982 25.779999,13.910464 43.206997,13.910464 43.206997,21.886056 0,21.886056 0,15.209556 0,13.910464z M63.282532,0.0010361671C64.106071,-0.014397144,64.932602,0.14249992,65.563629,0.47590685L78.170906,7.1311765C79.432961,7.7979926,79.470757,8.9483507,78.249794,9.691047L66.201576,17.023441C64.984032,17.765519,62.988022,17.765519,61.770348,17.023441L49.72213,9.691047C48.504715,8.9483507,48.518414,7.7600525,49.753078,7.04887L61.019405,0.56014299C61.638451,0.20423031,62.458992,0.016468048,63.282532,0.0010361671z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+</ResourceDictionary>

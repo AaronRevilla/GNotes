@@ -1,0 +1,43 @@
+﻿<dx:DXWindow xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+    x:Class="GraphicNotes.Views.Objects.TableForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    Title="Insert Table"  Height="Auto" Width="300" ShowInTaskbar="False" Topmost="True" WindowStyle="ToolWindow" 
+    WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Height" 
+    >
+    <Grid>
+        <DockPanel>
+            <Border DockPanel.Dock="Bottom">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="acceptButton" Grid.Column="0" Content="Accept" FontSize="20" FontWeight="Bold" Margin="5,5,5,5"
+                             Width="100" HorizontalAlignment="Right" Click="AcceptButton_Click"/>
+                    <Button x:Name="cancelButton" Grid.Column="1" Content="Cancel" FontSize="20" FontWeight="Bold" Margin="5,5,5,5"
+                             Width="100" HorizontalAlignment="Left" Click="cancelButton_Click"/>
+                </Grid>
+            </Border>
+           
+            <Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Columns:" FontWeight="Bold" Padding="0" Margin="10,10,0,10" HorizontalContentAlignment="Right" />
+                        <dxe:SpinEdit x:Name="columnSpin" Grid.Column="1" Grid.Row="0" Margin="10" MinValue="1" Value="1" IsFloatValue="False" />
+
+                    <Label Grid.Column="0" Grid.Row="1" Content="Rows:" FontWeight="Bold" Padding="0" Margin="10,10,0,10" HorizontalContentAlignment="Right"/>
+                    <dxe:SpinEdit x:Name="rowSpin" Grid.Column="1" Grid.Row="1" Margin="10" MinValue="1" Value="1" IsFloatValue="False"  />
+                </Grid>
+            </Border>
+        </DockPanel>
+    </Grid>
+</dx:DXWindow>
