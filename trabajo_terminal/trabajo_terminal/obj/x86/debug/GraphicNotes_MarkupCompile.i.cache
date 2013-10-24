@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-C:\Users\ealogom\Google Drive\TT\TT_2012B_049\trabajo_terminal\Trabajo_Terminal\obj\x86\Debug\
+C:\Users\Omar\Documents\GitHub\GNotes\trabajo_terminal\Trabajo_Terminal\obj\x86\Debug\
 GraphicNotes
 none
 false
 DEBUG;TRACE
-C:\Users\ealogom\Google Drive\TT\TT_2012B_049\trabajo_terminal\Trabajo_Terminal\App.xaml
-28575374475
+C:\Users\Omar\Documents\GitHub\GNotes\trabajo_terminal\Trabajo_Terminal\App.xaml
+29-310814811
 
-76475025031
-421055396019
-Core\Forms\ConnectForm.xaml;Core\Forms\ShareForm.xaml;Resources\Collections\ObjectIcons\ObjectIcons.xaml;Resources\Collections\RibbonBar\RibbonBarIcons.xaml;Resources\Collections\ToolboxCollection.xaml;Languages\StringResources.es-MX.xaml;Languages\StringResources.xaml;MainWindow.xaml;Resources\Styles\BaseObject.xaml;Resources\Styles\CanvasWorkspaceContainer.xaml;Resources\Styles\DocServer.xaml;Resources\Styles\DocumentPanel.xaml;Resources\Styles\FigureObject.xaml;Resources\Styles\General.xaml;Resources\Styles\Graphic2DObject.xaml;Resources\Styles\LineObject.xaml;Resources\Styles\MetroButton.xaml;Resources\Styles\ObjectBar.xaml;Resources\Styles\PictureObject.xaml;Resources\Styles\PlotObject.xaml;Resources\Styles\PolygonObject.xaml;Resources\Styles\ResizeChrome.xaml;Resources\Styles\TableObject.xaml;Resources\Styles\TextObject.xaml;Resources\Styles\Toolbox.xaml;Resources\Styles\VideoObject.xaml;Views\Objects\TableObject\TableForm.xaml;Window1.xaml;
+79855876410
+421599192437
+Core\Forms\ConnectForm.xaml;Core\Forms\ShareForm.xaml;Resources\Collections\ObjectIcons\ObjectIcons.xaml;Resources\Collections\RibbonBar\RibbonBarIcons.xaml;Resources\Collections\ToolboxCollection.xaml;Languages\StringResources.es-MX.xaml;Languages\StringResources.xaml;MainWindow.xaml;Resources\Styles\BaseObject.xaml;Resources\Styles\CanvasWorkspaceContainer.xaml;Resources\Styles\LockedChrome.xaml;Resources\Styles\DocServer.xaml;Resources\Styles\DocumentPanel.xaml;Resources\Styles\FigureObject.xaml;Resources\Styles\General.xaml;Resources\Styles\Graphic2DObject.xaml;Resources\Styles\LineObject.xaml;Resources\Styles\MetroButton.xaml;Resources\Styles\ObjectBar.xaml;Resources\Styles\PictureObject.xaml;Resources\Styles\PlotObject.xaml;Resources\Styles\PolygonObject.xaml;Resources\Styles\ResizeChrome.xaml;Resources\Styles\TableObject.xaml;Resources\Styles\TextObject.xaml;Resources\Styles\Toolbox.xaml;Resources\Styles\VideoObject.xaml;Views\Objects\TableObject\TableForm.xaml;Window1.xaml;
 
 True
 

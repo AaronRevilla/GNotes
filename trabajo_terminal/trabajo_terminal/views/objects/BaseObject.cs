@@ -8,33 +8,61 @@ using System.Windows.Input;
 using GraphicNotes.Views.Workspace;
 using System.Windows.Media;
 using GraphicNotes.Views.Adorners;
+using GNTools;
+using GraphicNotes.Core;
+using GraphicNotes.Communication;
 
 namespace GraphicNotes.Views.Objects
 {
     public class BaseObject: ContentControl
     {
+        private Document document;
 
-        public bool IsLocked
+        public enum ObjectState
         {
-            get { return (bool)GetValue(IsLockedProperty); }
-            set { SetValue(IsLockedProperty, value); }
+            Locked,
+            Unlocked,
+            Waiting,
+            Dormant
         }
 
-        public static readonly DependencyProperty IsLockedProperty =
-          DependencyProperty.Register("IsLocked", typeof(bool),
-                                      typeof(BaseObject),
-                                      new FrameworkPropertyMetadata(false));
-
-        public bool IsSelected
+        public String ID
         {
-            get { return (bool)GetValue(IsSelectedProperty); }
-            set { SetValue(IsSelectedProperty, value); }
+            get { return (String)GetValue(IDProperty); }
+            set { SetValue(IDProperty, value); }
         }
 
-        public static readonly DependencyProperty IsSelectedProperty =
-          DependencyProperty.Register("IsSelected", typeof(bool),
+        public static readonly DependencyProperty IDProperty =
+          DependencyProperty.Register("ID", typeof(String),
                                       typeof(BaseObject),
-                                      new FrameworkPropertyMetadata(false));
+                                      new FrameworkPropertyMetadata(""));
+
+        public ObjectState State
+        {
+            get { return (ObjectState)GetValue(StateProperty); }
+            set { SetValue(StateProperty, value); }
+        }
+
+        public static readonly DependencyProperty StateProperty =
+          DependencyProperty.Register("State", typeof(ObjectState),
+                                      typeof(BaseObject),
+                                      new FrameworkPropertyMetadata(ObjectState.Dormant));
+
+        private Collaborator remoteUser = new Collaborator();
+        public Collaborator RemoteUser
+        {
+            get { return remoteUser; }
+        }
+        //public bool IsSelected
+        //{
+        //    get { return (bool)GetValue(IsSelectedProperty); }
+        //    set { SetValue(IsSelectedProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty IsSelectedProperty =
+        //  DependencyProperty.Register("IsSelected", typeof(bool),
+        //                              typeof(BaseObject),
+        //                              new FrameworkPropertyMetadata(false));
 
         public static readonly DependencyProperty MoveThumbTemplateProperty =
             DependencyProperty.RegisterAttached("MoveThumbTemplate", typeof(ControlTemplate), typeof(BaseObject));
@@ -57,6 +85,7 @@ namespace GraphicNotes.Views.Objects
         public BaseObject()
         {
             this.Loaded += new RoutedEventHandler(this.BaseObject_Loaded);
+            remoteUser.Color = Brushes.Yellow;
         }
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
@@ -66,16 +95,16 @@ namespace GraphicNotes.Views.Objects
 
             if (canvasWorkspace != null)
             {
-                if ((Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control)) != ModifierKeys.None)
+                if ((Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control)) != ModifierKeys.None && document.Client.State==CommonNetworkEnums.ClientState.Disconnected)
                 {
-                    this.IsSelected = !this.IsSelected;
+                    this.State = ObjectState.Unlocked;
                 }
                 else
                 {
-                    if (!this.IsSelected)
+                    if (this.State!=ObjectState.Unlocked)
                     {
                         canvasWorkspace.DeselectAll();
-                        this.IsSelected = true;
+                        Select();
                     }
                 }
             }
@@ -83,12 +112,15 @@ namespace GraphicNotes.Views.Objects
             e.Handled = false;
         }
 
-        
-
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            document = this.DataContext as Document;
+        }
 
         private void BaseObject_Loaded(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Base Object Loaded");
+            
             if (this.Template != null)
             {
                 ContentPresenter contentPresenter =
@@ -114,11 +146,37 @@ namespace GraphicNotes.Views.Objects
                     }
                 }
                 ResizeDecorator resizeDecorator =
-                    this.Template.FindName("PART_BaseObjectDecorator", this) as ResizeDecorator;
+                    this.Template.FindName("PART_ResizeDecorator", this) as ResizeDecorator;
                 if (resizeDecorator != null)
                     resizeDecorator.ShowAdorner();
             }
-                
+
+            
+        }
+
+
+        public void Select()
+        {
+            if (document.Client.State == CommonNetworkEnums.ClientState.Connected)
+            {
+                this.State = ObjectState.Waiting;
+            }
+            else
+            {
+                this.State = ObjectState.Unlocked;
+            }
+        }
+
+        public void Deselect()
+        {
+            if (document.Client.State == CommonNetworkEnums.ClientState.Connected)
+            {
+                this.State = ObjectState.Dormant;
+            }
+            else
+            {
+                this.State = ObjectState.Dormant;
+            }
         }
        
 

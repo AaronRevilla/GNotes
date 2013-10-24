@@ -27,8 +27,8 @@
                         <a:ResizeDecorator  x:Name="PART_BaseObjectDecorator" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected"
-                                 Value="True">
+                        <Trigger Property="State"
+                                 Value="Unlocked">
                             <Setter TargetName="PART_BaseObjectDecorator"
                                     Property="ShowDecorator"
                                     Value="True" />

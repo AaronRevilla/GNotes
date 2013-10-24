@@ -11,6 +11,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using GraphicNotes.Views.Workspace;
 using GraphicNotes.Views.Objects;
+using GraphicNotes.Core;
+using GNTools;
 
 
 
@@ -18,6 +20,8 @@ namespace GraphicNotes.Views.Adorners
 {
     class RubberbandAdorner:Adorner
     {
+        private Document document;
+
         private Point? startPoint, endPoint;
         private Rectangle rubberband;
         private CanvasWorkspace canvasWorkspace;
@@ -44,11 +48,18 @@ namespace GraphicNotes.Views.Adorners
             this.visuals.Add(this.adornerCanvas);
 
             this.rubberband = new Rectangle();
-            this.rubberband.Stroke = Brushes.Navy;
+            this.rubberband.Stroke = new SolidColorBrush(Colors.DarkOrange);
             this.rubberband.StrokeThickness = 1;
             this.rubberband.StrokeDashArray = new DoubleCollection(new double[] { 2 });
 
             this.adornerCanvas.Children.Add(this.rubberband);
+
+            this.Loaded += RubberbandAdorner_Loaded;
+        }
+
+        void RubberbandAdorner_Loaded(object sender, RoutedEventArgs e)
+        {
+            Utils.WriteLine(this.DataContext+"");
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -125,13 +136,14 @@ namespace GraphicNotes.Views.Adorners
                 Rect itemRect = VisualTreeHelper.GetDescendantBounds(element);
                 Rect itemBounds = element.TransformToAncestor(canvasWorkspace).TransformBounds(itemRect);
 
-                if (rubberBand.Contains(itemBounds))
+                if (rubberBand.Contains(itemBounds) )
                 {
-                    element.IsSelected = true;
+                    element.Select();
+
                 }
                 else
                 {
-                    element.IsSelected = false;
+                    element.Deselect();
                 }
             }
             

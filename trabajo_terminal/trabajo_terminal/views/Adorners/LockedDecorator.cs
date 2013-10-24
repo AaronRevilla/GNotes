@@ -9,8 +9,8 @@ using System.Windows.Media;
 
 namespace GraphicNotes.Views.Adorners
 {
-    class ResizeDecorator:Control
-    {
+    class LockedDecorator:Control
+     {
         private Adorner adorner;
 
         public bool ShowDecorator
@@ -20,12 +20,12 @@ namespace GraphicNotes.Views.Adorners
         }
 
         public static readonly DependencyProperty ShowDecoratorProperty =
-            DependencyProperty.Register("ShowDecorator", typeof(bool), typeof(ResizeDecorator),
+            DependencyProperty.Register("ShowDecorator", typeof(bool), typeof(LockedDecorator),
             new FrameworkPropertyMetadata(false, new PropertyChangedCallback(ShowDecoratorProperty_Changed)));
 
-        public ResizeDecorator()
+        public LockedDecorator()
         {
-            Unloaded += new RoutedEventHandler(this.ResizeDecorator_Unloaded);
+            Unloaded += new RoutedEventHandler(this.LockedDecorator_Unloaded);
         }
 
         private void HideAdorner()
@@ -45,7 +45,7 @@ namespace GraphicNotes.Views.Adorners
                 if (adornerLayer != null)
                 {
                     ContentControl element = this.DataContext as ContentControl;
-                    this.adorner = new ResizeAdorner(element);
+                    this.adorner = new LockedAdorner(element);
                     adornerLayer.Add(this.adorner);
                     if (this.ShowDecorator)
                     {
@@ -63,7 +63,7 @@ namespace GraphicNotes.Views.Adorners
             }
         }
 
-        private void ResizeDecorator_Unloaded(object sender, RoutedEventArgs e)
+        private void LockedDecorator_Unloaded(object sender, RoutedEventArgs e)
         {
            
             if (this.adorner != null)
@@ -80,7 +80,7 @@ namespace GraphicNotes.Views.Adorners
 
         private static void ShowDecoratorProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ResizeDecorator decorator = (ResizeDecorator)d;
+            LockedDecorator decorator = (LockedDecorator)d;
             bool showDecorator = (bool)e.NewValue;
             if (showDecorator)
             {

@@ -12,11 +12,24 @@ using GraphicNotes.Views.Objects;
 using GraphicNotes.Views.Adorners;
 using GraphicNotes.Core;
 using DevExpress.Xpf.Docking;
+using GNTools;
 
 namespace GraphicNotes.Views.Workspace
 {
     public class CanvasWorkspace:Canvas
     {
+        private Document document;
+
+        public CanvasWorkspace()
+        {
+            this.Loaded += CanvasWorkspace_Loaded;
+        }
+
+        void CanvasWorkspace_Loaded(object sender, RoutedEventArgs e)
+        {
+            document = this.DataContext as Document;
+        }
+
         private Point? dragStartPoint = null;
 
         public IEnumerable<BaseObject> SelectedElements
@@ -24,7 +37,7 @@ namespace GraphicNotes.Views.Workspace
             get
             {
                 var selectedElements = from element in this.Children.OfType<BaseObject>()
-                                    where element.IsSelected == true
+                                    where element.State == BaseObject.ObjectState.Unlocked
                                     select element;
                 
                 return selectedElements;
@@ -35,7 +48,7 @@ namespace GraphicNotes.Views.Workspace
         {
             foreach (BaseObject item in this.SelectedElements)
             {
-                item.IsSelected = false;
+                item.Deselect();
             }
         }
 
@@ -90,7 +103,7 @@ namespace GraphicNotes.Views.Workspace
                     CanvasWorkspace.SetTop(ob, Math.Max(0, position.Y - ob.Height / 2));
                     this.Children.Add(ob);
                     this.DeselectAll();
-                    ob.IsSelected = true;
+                    ob.Loaded += ob_Loaded;
                 }
                 else if (type == (int)Enums.Objects.Table)
                 {
@@ -105,8 +118,7 @@ namespace GraphicNotes.Views.Workspace
                         CanvasWorkspace.SetLeft(ob, Math.Max(0, position.X - ob.Width / 2));
                         CanvasWorkspace.SetTop(ob, Math.Max(0, position.Y - ob.Height / 2));
                         this.Children.Add(ob);
-                        this.DeselectAll();
-                        ob.IsSelected = true;
+                        ob.Loaded += ob_Loaded;
                     }
                 }
                 else if (type == (int)Enums.Objects.Plot)
@@ -116,8 +128,7 @@ namespace GraphicNotes.Views.Workspace
                     CanvasWorkspace.SetLeft(ob, Math.Max(0, position.X - ob.Width / 2));
                     CanvasWorkspace.SetTop(ob, Math.Max(0, position.Y - ob.Height / 2));
                     this.Children.Add(ob);
-                    this.DeselectAll();
-                    ob.IsSelected = true;
+                    ob.Loaded += ob_Loaded;
                 }
                 else if (type == (int)Enums.Objects.Picture)
                 {
@@ -126,8 +137,7 @@ namespace GraphicNotes.Views.Workspace
                     CanvasWorkspace.SetLeft(ob, Math.Max(0, position.X - ob.Width / 2));
                     CanvasWorkspace.SetTop(ob, Math.Max(0, position.Y - ob.Height / 2));
                     this.Children.Add(ob);
-                    this.DeselectAll();
-                    ob.IsSelected = true;
+                    ob.Loaded += ob_Loaded;
                 }
                 else if (type == (int)Enums.Objects.Line)
                 {
@@ -136,8 +146,7 @@ namespace GraphicNotes.Views.Workspace
                     CanvasWorkspace.SetLeft(ob, Math.Max(0, position.X - ob.Width / 2));
                     CanvasWorkspace.SetTop(ob, Math.Max(0, position.Y - ob.Height / 2));
                     this.Children.Add(ob);
-                    this.DeselectAll();
-                    ob.IsSelected = true;
+                    ob.Loaded += ob_Loaded;
                 }
                 else if (type == (int)Enums.Objects.Figure3D)
                 {
@@ -146,8 +155,7 @@ namespace GraphicNotes.Views.Workspace
                     CanvasWorkspace.SetLeft(ob, Math.Max(0, position.X - ob.Width / 2));
                     CanvasWorkspace.SetTop(ob, Math.Max(0, position.Y - ob.Height / 2));
                     this.Children.Add(ob);
-                    this.DeselectAll();
-                    ob.IsSelected = true;
+                    ob.Loaded += ob_Loaded;
                 }
 
                 else if (type == (int)Enums.Objects.Video)
@@ -157,8 +165,7 @@ namespace GraphicNotes.Views.Workspace
                     CanvasWorkspace.SetLeft(ob, Math.Max(0, position.X - ob.Width / 2));
                     CanvasWorkspace.SetTop(ob, Math.Max(0, position.Y - ob.Height / 2));
                     this.Children.Add(ob);
-                    this.DeselectAll();
-                    ob.IsSelected = true;
+                    ob.Loaded += ob_Loaded;
                 }
 
                 else if (type == (int)Enums.Objects.Graphic2D)
@@ -168,14 +175,21 @@ namespace GraphicNotes.Views.Workspace
                     CanvasWorkspace.SetLeft(ob, Math.Max(0, position.X - ob.Width / 2));
                     CanvasWorkspace.SetTop(ob, Math.Max(0, position.Y - ob.Height / 2));
                     this.Children.Add(ob);
-                    this.DeselectAll();
-                    ob.IsSelected = true;
+                    ob.Loaded += ob_Loaded;
                 }
                 
             }
 
              e.Handled = true;
             
+        }
+
+        void ob_Loaded(object sender, RoutedEventArgs e)
+        {
+            BaseObject baseObject = sender as BaseObject;
+            this.DeselectAll();
+            baseObject.Select();
+            baseObject.Loaded -= ob_Loaded;
         }
 
         protected override Size MeasureOverride(Size constraint)
@@ -203,6 +217,8 @@ namespace GraphicNotes.Views.Workspace
             size.Height += 10;
             return size;
         }
+
+
 
     }
 }

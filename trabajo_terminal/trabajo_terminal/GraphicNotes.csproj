@@ -141,6 +141,9 @@
     <Compile Include="MainWindow.Themes.cs" />
     <Compile Include="BoolToTextConverter.cs" />
     <Compile Include="UIUtils.cs" />
+    <Compile Include="Views\Adorners\LockedChrome.cs" />
+    <Compile Include="Views\Adorners\LockedAdorner.cs" />
+    <Compile Include="Views\Adorners\LockedDecorator.cs" />
     <Compile Include="Views\Adorners\MoveThumb.cs" />
     <Compile Include="Views\Adorners\ResizeAdorner.cs" />
     <Compile Include="Views\Adorners\ResizeChrome.cs" />
@@ -238,6 +241,10 @@
     <Page Include="Resources\Styles\CanvasWorkspaceContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\LockedChrome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Styles\DocServer.xaml">
       <SubType>Designer</SubType>

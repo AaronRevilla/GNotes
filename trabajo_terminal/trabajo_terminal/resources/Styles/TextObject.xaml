@@ -136,12 +136,22 @@
                             </Grid>
                             
                         </Grid>
-                        <a:ResizeDecorator x:Name="PART_BaseObjectDecorator" />
+                        <a:ResizeDecorator x:Name="PART_ResizeDecorator" />
+                        <a:LockedDecorator x:Name="PART_LockedDecorator" ShowDecorator="True" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected"
-                                 Value="True">
-                            <Setter TargetName="PART_BaseObjectDecorator"
+                        <Trigger Property="State"
+                                 Value="Unlocked">
+                            <Setter TargetName="PART_ResizeDecorator"
+                                    Property="ShowDecorator"
+                                    Value="True" />
+                            <Setter TargetName="PART_ObjectBar"
+                                    Property="Opacity"
+                                    Value="1"/>
+                        </Trigger>
+                        <Trigger Property="State"
+                                 Value="Locked">
+                            <Setter TargetName="PART_LockedDecorator"
                                     Property="ShowDecorator"
                                     Value="True" />
                             <Setter TargetName="PART_ObjectBar"

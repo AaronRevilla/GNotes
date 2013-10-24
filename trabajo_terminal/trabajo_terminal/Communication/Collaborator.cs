@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 using System.Xml.Linq;
 
 namespace GraphicNotes.Communication
@@ -55,6 +56,23 @@ namespace GraphicNotes.Communication
                 }
             }
         }
+
+        private Brush color;
+        public Brush Color
+        {
+            get { return color; }
+            set
+            {
+                if (color != value)
+                {
+                    color = value;
+                    NotifyPropertyChanged("Color");
+                }
+            }
+        }
+
+
+        public Collaborator() { }
 
         public Collaborator(String id)
         {

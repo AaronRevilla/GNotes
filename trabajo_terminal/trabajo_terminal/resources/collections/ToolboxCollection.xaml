@@ -26,10 +26,10 @@
                              Text="{DynamicResource Polygon}"  
                              Type="Graphic2D" 
                              Source="/GraphicNotes;component/Images/ObjectIcons/polygon.png" />
-            <w:ToolboxObject Style="{StaticResource ToolboxObjectStyle}" 
+            <!--<w:ToolboxObject Style="{StaticResource ToolboxObjectStyle}" 
                              Text="{DynamicResource Table}"  
                              Type="Table" 
-                             Source="/GraphicNotes;component/Images/ObjectIcons/table.png" />
+                             Source="/GraphicNotes;component/Images/ObjectIcons/table.png" />-->
             <w:ToolboxObject Style="{StaticResource ToolboxObjectStyle}" 
                              Text="{DynamicResource Text}"  
                              Type="Text" 

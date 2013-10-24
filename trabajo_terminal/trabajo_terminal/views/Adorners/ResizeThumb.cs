@@ -35,7 +35,7 @@ namespace GraphicNotes.Views.Adorners
 
         private void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            if (this.element != null && this.canvasWorkspace != null && this.element.IsSelected)
+            if (this.element != null && this.canvasWorkspace != null && this.element.State==BaseObject.ObjectState.Unlocked)
             {
                 double minLeft = double.MaxValue;
                 double minTop = double.MaxValue;
