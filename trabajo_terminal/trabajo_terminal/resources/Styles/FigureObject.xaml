@@ -112,23 +112,71 @@
                                                                                     
                                                                                     <Label Grid.Column="0" Grid.Row="0" Content="Position"/>
                                                                                     <Label Grid.Column="1" Grid.Row="0" Content="X:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding CamaraX, Mode=TwoWay}"/>
                                                                                     <Label Grid.Column="3" Grid.Row="0" Content="Y:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding CamaraY, Mode=TwoWay}"/>
                                                                                     <Label Grid.Column="5" Grid.Row="0" Content="Z:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="0" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding CamaraZ, Mode=TwoWay}"/>
 
                                                                                     <Label Grid.Column="0" Grid.Row="1" Content="Angle"/>
                                                                                     <Label Grid.Column="1" Grid.Row="1" Content="αX:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding AnguloCamX, Mode=TwoWay}"/>
                                                                                     <Label Grid.Column="3" Grid.Row="1" Content="αY:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="1" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding AnguloCamY, Mode=TwoWay}"/>
                                                                                     <Label Grid.Column="5" Grid.Row="1" Content="αZ:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="1" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding AnguloCamZ, Mode=TwoWay}"/>
 
                                                                                 </Grid>
                                                                                 <StackPanel Grid.Column="1">
                                                                                     <Button x:Name="a" Margin="5,5,5,0">
+                                                                                        <Image Source="{DynamicResource bNewMatrix2D}" Width="25" Height="25"/>
+                                                                                    </Button>
+                                                                                </StackPanel>
+                                                                            </Grid>
+                                                                        </GroupBox>
+
+                                                                        <GroupBox Header="Model">
+                                                                            <Grid>
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="Auto"/>
+                                                                                    <ColumnDefinition Width="*"/>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <Grid Grid.Column="0">
+
+                                                                                    <Grid.RowDefinitions>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                    </Grid.RowDefinitions>
+
+                                                                                    <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="Auto"/>
+                                                                                        <ColumnDefinition Width="Auto"/>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                        <ColumnDefinition Width="Auto"/>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                        <ColumnDefinition Width="Auto"/>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                    </Grid.ColumnDefinitions>
+
+                                                                                    <Label Grid.Column="0" Grid.Row="0" Content="Position"/>
+                                                                                    <Label Grid.Column="1" Grid.Row="0" Content="X:" Margin="5,0,0,0"/>
+                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding ModeloX, Mode=TwoWay}"/>
+                                                                                    <Label Grid.Column="3" Grid.Row="0" Content="Y:" Margin="5,0,0,0"/>
+                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding ModeloY, Mode=TwoWay}"/>
+                                                                                    <Label Grid.Column="5" Grid.Row="0" Content="Z:" Margin="5,0,0,0"/>
+                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding ModeloZ, Mode=TwoWay}"/>
+
+                                                                                    <Label Grid.Column="0" Grid.Row="1" Content="Angle"/>
+                                                                                    <Label Grid.Column="1" Grid.Row="1" Content="αX:" Margin="5,0,0,0"/>
+                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding AnguloModX, Mode=TwoWay}"/>
+                                                                                    <Label Grid.Column="3" Grid.Row="1" Content="αY:" Margin="5,0,0,0"/>
+                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding AnguloModY, Mode=TwoWay}"/>
+                                                                                    <Label Grid.Column="5" Grid.Row="1" Content="αZ:" Margin="5,0,0,0"/>
+                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding AnguloModZ, Mode=TwoWay}"/>
+
+                                                                                </Grid>
+                                                                                <StackPanel Grid.Column="1">
+                                                                                    <Button x:Name="c" Margin="5,5,5,0">
                                                                                         <Image Source="{DynamicResource bNewMatrix2D}" Width="25" Height="25"/>
                                                                                     </Button>
                                                                                 </StackPanel>
@@ -160,19 +208,19 @@
 
                                                                                     <Label Grid.Column="0" Grid.Row="0" Content="Position"/>
                                                                                     <Label Grid.Column="1" Grid.Row="0" Content="X:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding PosicionLuzX, Mode=TwoWay}"/>
                                                                                     <Label Grid.Column="3" Grid.Row="0" Content="Y:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding PosicionLuzY, Mode=TwoWay}"/>
                                                                                     <Label Grid.Column="5" Grid.Row="0" Content="Z:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="0" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="0" Margin="5,0,0,0" Width="45" Text="{Binding PosicionLuzZ, Mode=TwoWay}"/>
 
                                                                                     <Label Grid.Column="0" Grid.Row="1" Content="Color"/>
                                                                                     <Label Grid.Column="1" Grid.Row="1" Content="R:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding FluzR, Mode=TwoWay}"/>
                                                                                     <Label Grid.Column="3" Grid.Row="1" Content="G:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="1" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="4" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding FluzG, Mode=TwoWay}"/>
                                                                                     <Label Grid.Column="5" Grid.Row="1" Content="B:" Margin="5,0,0,0"/>
-                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="1" Margin="5,0,0,0" Width="45"/>
+                                                                                    <dxe:TextEdit Grid.Column="6" Grid.Row="1" Margin="5,0,0,0" Width="45" Text="{Binding FluzB, Mode=TwoWay}"/>
 
                                                                                 </Grid>
                                                                                 <StackPanel Grid.Column="1">
@@ -411,7 +459,7 @@
                                                                 <RowDefinition Height="Auto"/>
                                                             </Grid.RowDefinitions>
                                                             <Border Grid.Row="0" Background="White">
-                                                                <gl:OpenGLControl  Name="PART_OuterGL" ClipToBounds="True"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></gl:OpenGLControl>
+                                                                <gl:OpenGLControl  Name="PART_OuterGL" ClipToBounds="True"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ></gl:OpenGLControl>
                                                             </Border>
                                                         </Grid>
                                                     </Border>
