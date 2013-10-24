@@ -80,7 +80,7 @@
                                                                         <RowDefinition Height="Auto"/>
                                                                     </Grid.RowDefinitions>
                                                                     <dxe:ComboBoxEdit x:Name="PART_AlgorithmField" Grid.Row="0" Margin="5,0,0,0"/>
-                                                                    <dxe:CheckEdit Content="Show Answer" x:Name="PART_AnswerField" IsChecked="True"  Grid.Row="1" Margin="5,0,0,0"/>
+                                                                    <dxe:CheckEdit Content="Show Answer" x:Name="PART_AnswerField" IsChecked="Fa"  Grid.Row="1" Margin="5,0,0,0"/>
                                                                     <Button x:Name="PART_ShowPopupButton" Grid.Row="2" Content="Show Data"/>
                                                                     <Popup  x:Name="PART_DataPopup" Placement="Left" PlacementTarget="{Binding ElementName=PART_Resizer}" >
                                                                         <Rectangle Width="200" Height="400" Fill="#AAA0A0"/>

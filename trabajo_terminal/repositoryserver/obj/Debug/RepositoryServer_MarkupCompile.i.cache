@@ -4,16 +4,16 @@
 exe
 C#
 .cs
-C:\Users\Omar\Documents\GitHub\GNotes\trabajo_terminal\RepositoryServer\obj\Debug\
+C:\Users\ealogom\Documents\GitHub\GNotes\trabajo_terminal\RepositoryServer\obj\Debug\
 RepositoryServer
 none
 false
 DEBUG;TRACE
-C:\Users\Omar\Documents\GitHub\GNotes\trabajo_terminal\RepositoryServer\App.xaml
+C:\Users\ealogom\Documents\GitHub\GNotes\trabajo_terminal\RepositoryServer\App.xaml
 52081429440
 
-111109785939
-341496422587
+11-980497646
+341407868588
 CredentialsForm.xaml;RepositoryForm.xaml;MainWindow.xaml;Resources\Collections\Icons.xaml;Resources\Styles\General.xaml;
 
 False
